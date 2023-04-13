@@ -95,7 +95,7 @@ TMP2=/tmp/cistmp2.$$                           # Temp file 2.
 
 ################################### SET .CISRC FILE DEFAULT VARIABLES ########################### 
 apt list --installed 2> /dev/null | grep -q net-tools
-(($? != 0)) && echo "net-tools is not installed. Please install before running script as ifconfig is required." && exit 1
+(($? != 0)) && sudo apt install net-tools #echo "net-tools is not installed. Please install before running script as ifconfig is required." && exit 1
 
 [[ -s ${CISRC} ]] || {
     echo -e "Setup of computer specific parameters in ${CISRC}. Please wait."
@@ -169,10 +169,10 @@ apt list --installed 2> /dev/null | grep -q net-tools
     echo -e 'PAMUNLOCK="900"                                    # Set PAM to locked time.                   ' >> ${CISRC}
     echo -e 'PAMHISTORY="5"                                     # Set PAM remembered password history.      ' >> ${CISRC}
     echo -e 'PAMENCRYPT="sha512"                                # Set PAM encryption key.                   ' >> ${CISRC}
-    echo -e 'PASSMAXDAYS="365"                                  # Set password expiration days.             ' >> ${CISRC}
-    echo -e 'PASSMINDAYS="7"                                    # Set Minimun days between password changes.' >> ${CISRC}
-    echo -e 'PASSWARNDAYS="8"                                   # Set password expiration warning days.     ' >> ${CISRC}
-    echo -e 'PASSINACTIVE="30"                                  # Set password inactive period.             ' >> ${CISRC}
+    echo -e 'PASSMAXDAYS="-1"                                   # Set password expiration days. CH 365 > -1 ' >> ${CISRC}
+    echo -e 'PASSMINDAYS="-1"                                   # Set Min days between pw changes. ch 7 > -1' >> ${CISRC}
+    echo -e 'PASSWARNDAYS="-1"                                  # Set password expi warning days. ch 8 > -1 ' >> ${CISRC}
+    echo -e 'PASSINACTIVE="-1"                                  # Set password inactive period. ch 30 > -1  ' >> ${CISRC}
     echo -e "INTNETWORK=\"${INTNETWORK}\"                       # Internal network.                         " >> ${CISRC}
     echo -e 'MAXLOGFILE="8"                                     # Maximum size of the audit log file.       ' >> ${CISRC}
     echo -e 'MAXLOGAGE="10"                                     # Set max age for logrotate.                ' >> ${CISRC}
