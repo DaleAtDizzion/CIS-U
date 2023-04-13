@@ -1194,8 +1194,8 @@ lev && UFW && (
 NO=3.5.1.7;   W=1; S=1; E=; SC=;  BD='Ensure default deny firewall policy'
 lev && UFW && (
     upd && ufw default deny incoming
-    upd && ufw default deny outgoing
-    #upd && ufw default allow outgoing
+    #upd && ufw default deny outgoing
+    upd && ufw default allow outgoing
     upd && ufw default deny routed
 )
 
