@@ -1162,6 +1162,7 @@ lev && UFW && (
     upd && ufw allow out proto udp to any port ntp
     upd && ufw allow out proto udp to any port 53
     upd && ufw allow out git
+    upd && ufw allow out 5721/tcp                       # Allow traffic to Kaseya
 )
 
 NO=3.5.1.6;   W=1; S=1; E=; SC=N; BD='Ensure firewall rules exist for all open ports'
@@ -1194,8 +1195,8 @@ lev && UFW && (
 NO=3.5.1.7;   W=1; S=1; E=; SC=;  BD='Ensure default deny firewall policy'
 lev && UFW && (
     upd && ufw default deny incoming
-    #upd && ufw default deny outgoing
-    upd && ufw default allow outgoing
+    upd && ufw default deny outgoing
+    #upd && ufw default allow outgoing
     upd && ufw default deny routed
 )
 
