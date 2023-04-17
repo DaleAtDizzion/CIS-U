@@ -1690,7 +1690,7 @@ lev && ssd && (
     done 
 )
 
-NO=5.3.4;     W=1; S=1; E=; SC=;  BD='Ensure SSH access is limited'
+NO=5.3.4;     W=3; S=3; E=; SC=;  BD='Ensure SSH access is limited'
 lev && ssd && [[ ${SUDOUSR} ]] && (update_conf /etc/ssh/sshd_config 'AllowUsers' "AllowUsers ${SUDOUSR}")
 
 NO=5.3.5;     W=1; S=1; E=; SC=;  BD='Ensure SSH LogLevel is appropriate'
