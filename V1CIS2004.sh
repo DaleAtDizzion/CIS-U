@@ -1192,6 +1192,14 @@ lev && UFW && (
     done < <(netstat -tnlp | grep "^udp " | grep -v 127 | cut -d: -f2 | awk  '{print $1}')
 )
 
+NO=CUSTOM;   W=1; S=1; E=; SC=N; BD='Custom: Open Custom Port for SSH'
+lev && UFW && (
+    upd || prn "UFW: Custom port for SSH needs to be configured."
+    upd && prn "UFW: Configuring custom port for SSH."
+    upd && ufw allow 22422/tcp
+)
+
+
 NO=3.5.1.7;   W=1; S=1; E=; SC=;  BD='Ensure default deny firewall policy'
 lev && UFW && (
     upd && ufw default deny incoming
