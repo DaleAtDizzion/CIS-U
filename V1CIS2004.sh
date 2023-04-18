@@ -1192,12 +1192,12 @@ lev && UFW && (
     done < <(netstat -tnlp | grep "^udp " | grep -v 127 | cut -d: -f2 | awk  '{print $1}')
 )
 
-#NO=CUSTOM;   W=1; S=1; E=; SC=N; BD='Custom: Open Custom Port for SSH'
-#lev && UFW && (
-#    upd || prn "UFW: Custom port for SSH needs to be configured."
-#    upd && prn "UFW: Configuring custom port for SSH."
-#    upd && ufw allow 22422/tcp
-#)
+NO=CUSTOM;   W=1; S=1; E=; SC=N; BD='Custom: Open Custom Port for SSH'
+lev && UFW && (
+    upd || prn "UFW: Custom port for SSH needs to be configured."
+    upd && prn "UFW: Configuring custom port for SSH."
+    upd && ufw allow 22422/tcp
+)
 
 
 NO=3.5.1.7;   W=1; S=1; E=; SC=;  BD='Ensure default deny firewall policy'
@@ -1701,8 +1701,8 @@ lev && ssd && (
 NO=5.3.4;     W=3; S=3; E=; SC=;  BD='Ensure SSH access is limited'
 lev && ssd && [[ ${SUDOUSR} ]] && (update_conf /etc/ssh/sshd_config 'AllowUsers' "AllowUsers ${SUDOUSR}")
 
-#NO=NA;     W=1; S=1; E=; SC=;  BD='Change SSH Port'
-#lev && ssd && (update_conf /etc/ssh/sshd_config 'Port' 'Port 22422')
+NO=NA;     W=1; S=1; E=; SC=;  BD='Change SSH Port'
+lev && ssd && (update_conf /etc/ssh/sshd_config 'Port' 'Port 22422')
 
 NO=5.3.5;     W=1; S=1; E=; SC=;  BD='Ensure SSH LogLevel is appropriate'
 lev && ssd && (update_conf /etc/ssh/sshd_config 'LogLevel' 'LogLevel INFO')
