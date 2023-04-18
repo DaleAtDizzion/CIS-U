@@ -1162,6 +1162,7 @@ lev && UFW && (
     upd && ufw allow out proto udp to any port ntp
     upd && ufw allow out proto udp to any port 53
     upd && ufw allow out git
+    upd && ufw allow out 40815/tcp                      # Allow traffic to R7 Console
     upd && ufw allow out 5721/tcp                       # Allow traffic to Kaseya
 )
 
@@ -1197,6 +1198,9 @@ lev && UFW && (
     upd || prn "UFW: Custom port for SSH needs to be configured."
     upd && prn "UFW: Configuring custom port for SSH."
     upd && ufw allow 22422/tcp
+    upd && ufw allow 5508               #Allow R7 agent communication - move to post deploy script
+    upd && ufw allow 6608               #Allow R7 agent update requests - move to post deploy script
+    upd && ufw allow 5508               #Allow R7 agent file upload - move to post deploy script
 )
 
 
